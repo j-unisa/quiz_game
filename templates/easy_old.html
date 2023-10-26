@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Easy</title>
+</head>
+<body>
+    <h1>This will be the easy questions.</h1>
+    <form action="/easy", method="post">
+        <div>
+            <!--
+            <p>{{ question }}</p>
+            <input name="user_answer" type="radio">{{ answer }}<br>
+            <input name="user_answer" type="radio">{{ option1 }}<br>
+            <input name="user_answer" type="radio">{{ option2 }}<br>
+            <input name="user_answer" type="radio">{{ option3 }}<br>
+            <button type="submit">Submit</button>
+            -->
+        </div>
+    </form>
+    <form action="/easy", method="post">
+        <div>
+            {% for row in range(easy_qs[0]|length) %}
+                <p>{{ easy_qs[0][row] }}</p>
+                <input name="question[row]" type="radio">{{ easy_qs[1][row] }}<br>
+                <input name="question[row]" type="radio">{{ easy_qs[2][row] }}<br>
+                <input name="question[row]" type="radio">{{ easy_qs[3][row] }}<br>
+                <input name="question[row]" type="radio">{{ easy_qs[3][row] }}<br>
+            {% endfor %}
+        </div>
+    </form>
+</body>
+</html>
