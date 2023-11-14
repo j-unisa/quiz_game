@@ -1,9 +1,0 @@
-1. Easy, Medium, Hard Levels at beginning
-2. Create SQL database to store questions and answers
-3. Create webpage for title page
-4. Create webpage for questions pages (all questions at once)
-    a. Easy
-    b. Medium
-    c. Hard
-5. Create webpage for results
-6. Create route to process user's answers and redirect to results
