@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Easy
+{% endblock %}
+
+{% block main %}
+<form action="/results" method="post">
+    <div>
+        {% for row in range(easy_qs|length) %}
+            <p>{{ easy_qs[row][1] }}</p>
+            <input name="id{{ easy_qs[row][0] }}" type="hidden" value="{{ easy_qs[row][0] }}">
+            <input name="level" type="hidden" value="easy">
+            <input name="question{{ row }}" type="radio" value="{{ easy_qs[row][2] }}">{{ easy_qs[row][2] }}<br>
+            <input name="question{{ row }}" type="radio" value="{{ easy_qs[row][3] }}">{{ easy_qs[row][3] }}<br>
+            <input name="question{{ row }}" type="radio" value="{{ easy_qs[row][4] }}">{{ easy_qs[row][4] }}<br>
+            <input name="question{{ row }}" type="radio" value="{{ easy_qs[row][5] }}">{{ easy_qs[row][5] }}<br>
+        <br>
+        {% endfor %}
+    </div>
+    <input type="submit">
+</form>
+{% endblock %}

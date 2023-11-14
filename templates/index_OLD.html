@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Webpage</title>
+</head>
+<body>
+    <h1>Welcome to My Webpage</h1>
+    <p>This is a simple example.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Option 1</th>
+                <th>Option 2</th>
+                <th>Option 3</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for column in show_all %}
+                <tr>
+                    <td>{{ column[1] }}</td>
+                    <td>{{ column[2] }}</td>
+                    <td>{{ column[3] }}</td>
+                    <td>{{ column[4] }}</td>
+                    <td>{{ column[5] }}</td>
+                    <td>{{ column[6] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <td><a href="/easy">Easy</a></td>
+                <td><a href="/medium">Medium</a></td>
+                <td><a href="/hard">Hard</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

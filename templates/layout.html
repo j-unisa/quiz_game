@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Game: {% block title %}{% endblock %}</title>
+
+    <!-- External CSS file -->
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <!-- Centered header -->
+    <h1 class="center-text bg-purple">Choose a level:</h1>
+
+    <!-- Centered table with links -->
+    <table class="center-table">
+        <tbody>
+            <tr>
+                <td class="center-text"><a href="/easy">Easy</a></td>
+                <td class="center-text"><a href="/medium">Medium</a></td>
+                <td class="center-text"><a href="/hard">Hard</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="bg-pink">
+        {% block main %}{% endblock %}
+    </div>
+</body>
+</html>

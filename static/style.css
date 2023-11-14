@@ -1,0 +1,41 @@
+/* Pink background color */
+.bg-pink
+{
+    background-color: hsla(330, 50%, 50%, 0.5);
+}
+
+/* Purple background color */
+.bg-purple
+{
+    background-color: hsla(270, 50%, 50%, 0.5);
+}
+
+body
+{
+    background-image: url('unicorn.jpg');
+    background-size: cover; /* Covers entire viewport */
+    background-position: center; /* Centers image */
+    background-attachment: fixed; /* Prevents scrolling */
+}
+
+.bold-text
+{
+    font-weight: bold;
+}
+
+/* Centers the entire table */
+.center-table
+{
+    margin: 0 auto;
+}
+
+/* Centers text */
+.center-text
+{
+    text-align: center;
+}
+
+.large-text
+{
+    font-size: 150px;
+}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Medium
+{% endblock %}
+
+{% block main %}
+<form action="/results" method="post">
+    <div>
+        {% for row in range(medium_qs|length) %}
+            <p>{{ medium_qs[row][1] }}</p>
+            <input name="id{{ medium_qs[row][0] }}" type="hidden" value="{{ medium_qs[row][0] }}">
+            <input name="level" type="hidden" value="medium">
+            <input name="question{{ row }}" type="radio" value="{{ medium_qs[row][2] }}">{{ medium_qs[row][2] }}<br>
+            <input name="question{{ row }}" type="radio" value="{{ medium_qs[row][3] }}">{{ medium_qs[row][3] }}<br>
+            <input name="question{{ row }}" type="radio" value="{{ medium_qs[row][4] }}">{{ medium_qs[row][4] }}<br>
+            <input name="question{{ row }}" type="radio" value="{{ medium_qs[row][5] }}">{{ medium_qs[row][5] }}<br>
+        <br>
+        {% endfor %}
+    </div>
+    <input type="submit">
+</form>
+{% endblock %}
