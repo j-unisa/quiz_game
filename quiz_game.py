@@ -1,5 +1,3 @@
-# Quiz game will store several questions and answers in a SQL database.
-
 from flask import Flask, render_template, request
 import sqlite3
 from random import shuffle
