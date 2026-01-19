@@ -1,3 +1,10 @@
+*, 
+*::before, 
+*::after 
+{
+  box-sizing: border-box;
+}
+
 /* Pink background color */
 .bg-pink
 {
@@ -16,6 +23,9 @@ body
     background-size: cover; /* Covers entire viewport */
     background-position: center; /* Centers image */
     background-attachment: fixed; /* Prevents scrolling */
+    font-family: Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .bold-text
@@ -38,4 +48,9 @@ body
 .large-text
 {
     font-size: 150px;
+}
+
+li
+{
+    list-style: none;
 }
