@@ -1,46 +1,25 @@
-*, 
-*::before, 
-*::after 
-{
+/* --- 1. Global Resets --- */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Pink background color */
-.bg-pink {
-    /* Your existing color */
-    background-color: hsla(340, 82%, 52%, 0.5);
-
-    color: hsla(270, 50%, 50%);
-    
-    /* NEW: Adds 20px of space inside the box */
-    padding: 20px;
-    
-    /* Optional: Rounds the corners to look softer */
-    border-radius: 15px;
-    
-    /* Optional: Centers the pink box so it doesn't span the whole screen width */
-    max-width: 800px;
-    margin: 20px auto; 
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('./assets/images/unicorn.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: "DynaPuff", sans-serif;
 }
 
-/* Purple background color */
-.bg-purple
-{
-    background-color: hsla(270, 50%, 50%, 0.5);
-
-    color: hsla(340, 82%, 52%, 0.8);
-
-    /* NEW: Adds 20px of space inside the box */
-    padding: 20px;
-    
-    /* Optional: Rounds the corners to look softer */
-    border-radius: 15px;
-    
-    /* Optional: Centers the pink box so it doesn't span the whole screen width */
-    max-width: 800px;
-    margin: 20px auto; 
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Merged from li rule */
 }
 
+/* --- 2. Typography --- */
 @font-face {
   font-family: 'DynaPuff';
   src: url('./assets/fonts/DynaPuff.ttf') format('truetype');
@@ -48,113 +27,66 @@
   font-style: normal;
 }
 
-body
-{
-    background-image: url('./assets/images/unicorn.jpg');
-    background-size: cover; /* Covers entire viewport */
-    background-position: center; /* Centers image */
-    background-attachment: fixed; /* Prevents scrolling */
-    font-family: "DynaPuff", sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-.bold-text
-{
-    font-weight: bold;
-}
-
-/* Centers the entire table */
-.center-table
-{
-    margin: 0 auto;
-}
-
-/* Centers text */
-.center-text
-{
-    text-align: center;
-}
-
-.large-text
-{
-    font-size: 150px;
-}
-
-/* Targets the list inside your nav bar */
+/* --- 3. Component: Navigation --- */
 nav ul {
-    display: flex;             /* Turns on Flexbox mode */
-    justify-content: center;   /* Packs items in the center */
-    flex-wrap: wrap;           /* Allows wrapping on tiny phone screens */
-    gap: 10px;                 /* Adds a little space between the buttons */
-    padding: 0;                /* Removes default padding */
-    margin: 0;                 /* Removes default margin */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-ul
-{
-    margin: 0;
-    padding: 0;
+/* --- 4. Component: Content Cards --- */
+/* The shape (Shared) */
+.card {
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 20px auto;
 }
 
-li
-{
-    list-style: none;
+/* The themes (Specific) */
+.bg-pink {
+    background-color: hsla(340, 82%, 52%, 0.5);
+    color: hsla(270, 50%, 50%);
 }
 
-/* --- Button Styles --- */
+.bg-purple {
+    background-color: hsla(270, 50%, 50%, 0.5);
+    color: hsla(340, 82%, 52%);
+}
 
-/* Base style for ALL buttons */
+/* --- 5. Component: Buttons --- */
 .btn {
-    display: inline-block;      /* Allows padding and margin */
-    padding: 12px 24px;         /* Nice big click area */
-    margin: 5px;                /* Space between buttons */
-    border-radius: 50px;        /* Modern "pill" shape */
-    text-decoration: none;      /* Removes the underline */
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 5px;
+    border-radius: 50px;
+    text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
-    transition: transform 0.1s; /* smooth click animation */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow */
-
-    border: none;           /* Removes the ugly default gray border */
-    cursor: pointer;        /* Makes the mouse turn into a hand */
-    font-family: inherit;   /* Forces it to use DynaPuff instead of Arial */
+    transition: transform 0.1s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    /* Input fixes */
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
-/* Click effect */
 .btn:active {
-    transform: scale(0.95);     /* Shrinks slightly when clicked */
+    transform: scale(0.95);
 }
 
-/* Specific Colors */
-.btn-home {
-    background-color: #ff80ab; /* Pastel pink to match the theme */
-    color: white;
-}
+/* Button Variants */
+.btn-home   { background-color: #ff80ab; color: white; }
+.btn-green  { background-color: #2e7d32; color: white; }
+.btn-yellow { background-color: #fbc02d; color: white; }
+.btn-red    { background-color: #c62828; color: white; }
+.btn-purple { background-color: #8040bf; color: white; }
 
-.btn-green {
-    background-color: #2e7d32; /* Forest Green */
-    color: white;
-}
-
-.btn-yellow {
-    background-color: #fbc02d; /* Sunflower Yellow */
-    color: white;              /* Black text is easier to read on yellow */
-}
-
-.btn-red {
-    background-color: #c62828; /* Brick Red */
-    color: white;
-}
-
-.btn-purple {
-    background-color: #8040bf;
-    color: white;
-}
-
-/* TODO: Change font to a more bubbly one
-TODO: Change font color
-TODO: Change submit button
-TODO: Verify text centering
-TODO: Refactor for organization and efficiency
-*/
+/* --- 6. Utilities --- */
+.bold-text    { font-weight: bold; }
+.center-text  { text-align: center; }
+.center-table { margin: 0 auto; }
+.medium-text  { font-size: 75px;}
+.large-text   { font-size: 150px; }
