@@ -9,6 +9,8 @@
 .bg-pink {
     /* Your existing color */
     background-color: hsla(340, 82%, 52%, 0.5);
+
+    color: hsla(270, 50%, 50%);
     
     /* NEW: Adds 20px of space inside the box */
     padding: 20px;
@@ -26,6 +28,8 @@
 {
     background-color: hsla(270, 50%, 50%, 0.5);
 
+    color: hsla(340, 82%, 52%, 0.8);
+
     /* NEW: Adds 20px of space inside the box */
     padding: 20px;
     
@@ -37,13 +41,20 @@
     margin: 20px auto; 
 }
 
+@font-face {
+  font-family: 'DynaPuff';
+  src: url('./assets/fonts/DynaPuff.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body
 {
-    background-image: url('unicorn.jpg');
+    background-image: url('./assets/images/unicorn.jpg');
     background-size: cover; /* Covers entire viewport */
     background-position: center; /* Centers image */
     background-attachment: fixed; /* Prevents scrolling */
-    font-family: Roboto, sans-serif;
+    font-family: "DynaPuff", sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -104,6 +115,10 @@ li
     font-size: 1.1rem;
     transition: transform 0.1s; /* smooth click animation */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow */
+
+    border: none;           /* Removes the ugly default gray border */
+    cursor: pointer;        /* Makes the mouse turn into a hand */
+    font-family: inherit;   /* Forces it to use DynaPuff instead of Arial */
 }
 
 /* Click effect */
@@ -129,6 +144,11 @@ li
 
 .btn-red {
     background-color: #c62828; /* Brick Red */
+    color: white;
+}
+
+.btn-purple {
+    background-color: #8040bf;
     color: white;
 }
 
