@@ -127,6 +127,7 @@ def results():
 
     return render_template("results.html", score=score)
 
+# TODO: Refactor for organization and efficiency
 
 if __name__ == '__main__':
     app.run()
