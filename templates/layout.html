@@ -12,24 +12,19 @@
     {% block top_content %}{% endblock %}
     
     <!-- Centered header -->
-    <h1 class="center-text bg-purple">Choose a level:</h1>
+    <h1 class="center-text card bg-purple">Choose a level:</h1>
 
     <!-- Centered table with links -->
-    <nav class="center-table">
+    <nav>
         <ul>
-            <li class="center-text">
-                <a href="/" class="btn btn-home">🏠 Home</a></li>
-            <li class="center-text">
-                <a href="/easy" class="btn btn-green">Easy</a></li>
-            <li class="center-text">
-                <a href="/medium" class="btn btn-yellow">Medium</a></li>
-            <li class="center-text">
-                <a href="/hard" class="btn btn-red">Hard</a></li>
+            <li><a href="/" class="btn btn-home">🏠 Home</a></li>
+            <li><a href="/quiz/easy" class="btn btn-green">Easy</a></li>
+            <li><a href="/quiz/medium" class="btn btn-yellow">Medium</a></li>
+            <li><a href="/quiz/hard" class="btn btn-red">Hard</a></li>
         </ul>
     </nav>
 
     {% block main %}{% endblock %}
 
-    <!-- TODO: Refactor for organization and efficiency -->
 </body>
 </html>
