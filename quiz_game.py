@@ -4,69 +4,78 @@ from random import shuffle
 
 app = Flask(__name__)
 
-# Keeps track of amount of correct answers
-score = {}
-
 @app.route('/')
 def index():
+    """Renders the homepage"""
     connection = sqlite3.connect('q_a.db')
     db = connection.cursor()
-    # You generally don't need to fetch *all* data for the index unless you are displaying it there
-    # But keeping your original logic for now:
-    show_all = db.execute("SELECT * FROM q_a")
+    show_all = db.execute("SELECT * FROM q_a").fetchall()
+    connection.close()
     return render_template("index.html", show_all=show_all)
 
-# --- THIS IS THE NEW DYNAMIC ROUTE ---
 @app.route('/quiz/<level>', methods=['GET', 'POST'])
 def quiz(level):
-    # 1. Security check: prevent users from typing /quiz/garbage
+    """
+    Fetches questions for a specific difficulty level (easy/medium/hard),
+    shuffles the answer options, and renders the quiz template.
+    """
+    # Security: whitelist allowed levels to prevent SQL injection or errors
     if level not in ['easy', 'medium', 'hard']:
         return render_template("index.html")
 
     connection = sqlite3.connect('q_a.db')
     db = connection.cursor()
 
-    # 2. Use the 'level' variable to get the right questions
-    # Note: We select specific columns to ensure index 2 is always the answer
-    query = "SELECT id, question, answer, option1, option2, option3 FROM q_a WHERE level = ?"
+    query = "SELECT id, question, answer, option1, option2, option3 FROM q_a WHERE level = ? ORDER BY id"
     data = db.execute(query, (level,))
     
+    # Convert tuples to lists so we can modify them (shuffle options)
     questions = list(map(list, data.fetchall()))
+    connection.close()
 
-    # 3. Shuffle logic (identical to before, but now works for all levels)
     for row in questions:
+        # Create a list of all options (Correct Answer + 3 Distractors)
         options = [row[2], row[3], row[4], row[5]]
         shuffle(options)
+
+        # Overwrite the row with shuffled options so the correct answer isn't always first
         row[2] = options[0]
         row[3] = options[1]
         row[4] = options[2]
         row[5] = options[3]
 
-    # 4. Render the SINGLE generic template
     return render_template("quiz.html", questions=questions, level=level)
 
 @app.route('/results', methods=["POST"])
 def results():
+    """
+    Calculates the user's score by comparing form submissions against the database.
+    """
     connection = sqlite3.connect('q_a.db')
     db = connection.cursor()
 
     level = request.form.get("level")
-    answers = db.execute("SELECT id, answer FROM q_a WHERE level=?", (level,))
-    answers = answers.fetchall()
 
+    # Fetch the correct answers for this level
+    answers = db.execute("SELECT id, answer FROM q_a WHERE level=? ORDER BY id", (level,))
+    answers = answers.fetchall()
+    connection.close()
+
+    score = 0
     correct_answers = {}
     for row in answers:
         correct_answers[row[0]] = row[1]
 
-    score = 0
+    # Loop through questions to check answers
+    # Note: Relies on HTML inputs named 'question0', 'question1', etc.
     for row in range(len(correct_answers)):
-        # We need to make sure we look for the right question ID in the form
-        # Note: This loop relies on the form naming convention 'question0', 'question1', etc.
-        answer = request.form.get(f"question{row}")
-        if answer == list(correct_answers.values())[row]:
+        user_answer = request.form.get(f"question{row}")
+
+        # Compare user answer vs correct answer
+        if user_answer == list(correct_answers.values())[row]:
             score += 1
 
-    # Avoid division by zero if database is empty
+    # Prevent crash (division by zero) if a level has no questions
     if len(correct_answers) > 0:
         score_pct = int((score / len(correct_answers)) * 100)
     else:
@@ -76,4 +85,3 @@ def results():
 
 if __name__ == '__main__':
     app.run()
-    
