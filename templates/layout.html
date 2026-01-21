@@ -8,13 +8,13 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
-
+    <!-- Top content -->
     {% block top_content %}{% endblock %}
     
     <!-- Centered header -->
     <h1 class="center-text card bg-purple">Choose a level:</h1>
 
-    <!-- Centered table with links -->
+    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="/" class="btn btn-home">🏠 Home</a></li>
@@ -24,6 +24,7 @@
         </ul>
     </nav>
 
+    <!-- Main content -->
     {% block main %}{% endblock %}
 
 </body>
