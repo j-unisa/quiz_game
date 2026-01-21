@@ -7,15 +7,13 @@
 {% block main %}
 <div class="card bg-pink">
     <form action="/results" method="post">
+        <input name="level" type="hidden" value="{{ level }}">
         <div>
-            {# We use the generic 'questions' variable passed from Python #}
+            {# Iterate through questions using index 'row' to generate unique input names #}
             {% for row in range(questions|length) %}
+
+                {# Data Structure: [0]=id, [1]=question text, [2-5]=shuffled options #}
                 <p>{{ questions[row][1] }}</p>
-                <input name="id{{ questions[row][0] }}" type="hidden" value="{{ questions[row][0] }}">
-                
-                {# We use the generic 'level' variable passed from Python #}
-                <input name="level" type="hidden" value="{{ level }}">
-                
                 <input name="question{{ row }}" type="radio" value="{{ questions[row][2] }}">{{ questions[row][2] }}<br>
                 <input name="question{{ row }}" type="radio" value="{{ questions[row][3] }}">{{ questions[row][3] }}<br>
                 <input name="question{{ row }}" type="radio" value="{{ questions[row][4] }}">{{ questions[row][4] }}<br>
