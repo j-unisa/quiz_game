@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Quiz Game: {% block title %}{% endblock %}</title>
-
-    <!-- External CSS file -->
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <!-- Top content -->
